@@ -1,0 +1,35 @@
+.tab {
+   float: left;
+   border: 1px solid #fff;
+   background-color: #fff;
+   width: 45%;
+   height: 645px;
+   margin-left: 548px;
+   margin-top: 108px;
+
+  }
+ .tablinks{
+   border: 1px solid;
+   width: 100%;
+   display: inline-flex;
+   height: 55px;
+
+ }
+ .main-button{
+  height:100%;
+  width:50%;
+  float:left;
+ }
+ .sub-button{
+  float:left;
+  width:50%;
+ }
+ .container{
+  display:none;
+ }
+ h3{
+   text-align: center;
+   margin-top: 9px;
+   margin-left: -100px;
+ }
+ 

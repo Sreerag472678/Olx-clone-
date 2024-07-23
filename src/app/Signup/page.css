@@ -1,0 +1,23 @@
+.register{
+    border: 1px solid;
+    width: 31rem;
+    height: 45rem;
+    margin-left: 41rem;
+    margin-top: 5rem;
+}
+.input{
+    margin-top: 21px;
+    padding: 6px;
+    margin-left: 82px;
+    width: 21rem;
+}
+.image{
+    width: 289px;
+    height: 268px;
+    margin-left: 7rem;
+}
+.btn{
+    margin-top: 3rem;
+    margin-left: 13rem;
+
+}

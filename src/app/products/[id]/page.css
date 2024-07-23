@@ -1,0 +1,82 @@
+.detail-img{
+    border: 1px solid;
+    width: 50rem;
+    height: 32rem;
+    margin-top: 9rem;
+    margin-left: 14rem;
+
+}
+
+.detail{
+    border: 1px solid;
+    width: 29rem;
+    height: 10rem;
+    margin-left: 66rem;
+    margin-top: -32rem;
+
+}
+.detail-chat{
+    border: 1px solid;
+    width: 29rem;
+    height: 12rem;
+    margin-left: 66rem;
+    margin-top: 18px;
+    background-color: white;
+    color: black;
+}
+
+
+.detail-location{
+    border: 1px solid;
+    width: 29rem;
+    height: 9rem;
+    margin-left: 66rem;
+    margin-top: 18px;
+
+}
+.detail-Description{
+    border: 1px solid;
+    width: 50rem;
+    height: 14rem;
+    margin-left: 14rem;
+    margin-top: -9px;
+
+}
+.detail-map{
+    border: 1px solid;
+    width: 29rem;
+    height: 13rem;
+    margin-left: 66rem;
+    margin-top: -208px;
+}
+.btn-chat{
+    text-align: center;
+    align-items: center;
+    margin-top: 7rem;
+    margin-left: 10rem;
+    background-color: cadetblue;
+}
+.price{
+    font-size: 29px;
+    text-align: left;
+    padding-left: 16px;
+}
+.text-pd{
+    margin-left: 18px;
+}
+.phone{
+    font-size: 18px;
+    text-align: left;
+    padding-left: 188px;
+    padding-top: 7px;   
+}
+.discription{
+        margin-top: 2rem;
+        margin-left: 24px;
+}
+.Details{
+    margin-top: 3px;margin-top: 7px;
+    margin-left: 34px; 
+}
+
+

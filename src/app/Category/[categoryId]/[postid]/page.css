@@ -1,0 +1,32 @@
+.post{
+  border: 1px solid;
+  width: 38rem;
+  height: 77rem;
+  margin-left: 39rem;
+  margin-top: 1rem;
+  padding: 31px;
+  padding-top: 31px;
+}
+.brand{
+  margin: 17px;
+  padding: 14px;
+  width: 30rem;
+}
+.btn{
+  align-items: center;
+  text-align: center;
+  margin-left: 12rem;
+  height: 45px;
+}
+.sel2{
+  border: 1px solid;
+  width: 38rem;
+  height: 7rem;
+  margin-left: 39rem;
+  margin-top: 3rem;
+  padding: 10px;
+}
+h3{
+  text-align: center;
+  margin-top: 20px;
+}
