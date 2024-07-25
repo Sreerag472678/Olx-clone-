@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, ChangeEvent, FormEvent } from 'react';
-import './page.css'
+import './page.css';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 
@@ -10,38 +10,54 @@ interface Parameter {
 }
 
 interface FormDataState {
-  brand: string;
-  description: string;
-  addTitle: string;
-  year: string;
-  price: string;
-  phone: string;
-  location: string;
-  state: string;
-  district: string;
-  image: File | null;
+  Brand: string;
+  Discription: string;
+  Addtitle: string;
+  Year: string;
+  Price: string;
+  Phone: string;
+  Location: string;
+  State: string;
+  District: string;
+  Image: File | null;
 }
 
-export default function AddProduct({params}) {
+export default function AddProduct({params}: Parameter) {
   const [formData, setFormData] = useState<FormDataState>({
-    brand: '',
-    description: '',
-    addTitle: '',
-    year: '',
-    price: '',
-    phone: '',
-    location: '',
-    state: '',
-    district: '',
-    image: null,
+    Brand: '',
+    Discription: '',
+    Addtitle: '',
+    Year: '',
+    Price: '',
+    Phone: '',
+    Location: '',
+    State: '',
+    District: '',
+    Image: null,
   });
+
+  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value, type, files } = e.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: type === 'file' ? (files ? files[0] : null) : value,
+  //   }));
+  // };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, files } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === 'file' ? (files ? files[0] : null) : value,
-    }));
+  
+    if (type === 'file' && files) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: files[0],  
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -56,15 +72,15 @@ export default function AddProduct({params}) {
     const formDataToSend = new FormData();
     formDataToSend.append('Brand', formData.Brand);
     formDataToSend.append('Discription', formData.Discription);
-    formDataToSend.append('Addtitle', formData.Addtitle); 
+    formDataToSend.append('Addtitle', formData.Addtitle);
     formDataToSend.append('Year', formData.Year);
     formDataToSend.append('Price', formData.Price);
     formDataToSend.append('Phone', formData.Phone);
     formDataToSend.append('Location', formData.Location);
     formDataToSend.append('State', formData.State);
     formDataToSend.append('District', formData.District);
-    if (formData.image) {
-      formDataToSend.append('Image', formData.Image); 
+    if (formData.Image) {
+      formDataToSend.append('Image', formData.Image);
     }
 
     try {
@@ -100,7 +116,7 @@ export default function AddProduct({params}) {
     }
   };
 
-  return (
+  return (  
     <div>
       <h3>POST YOUR AD</h3>
       <div className='sel2'>
@@ -112,128 +128,129 @@ export default function AddProduct({params}) {
         </div>
       </div>
       <div className='post'>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Brand:
-        <input
-        className='brand'
-          type="text"
-          placeholder='Brand'
-          name="Brand"
-          value={formData.Brand}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Description:
-        <input
-         className='brand'
-         placeholder='Description'
-          type="text"
-          name="Discription"
-          value={formData.Description}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Add Title:
-        <input
-         className='brand'
-         placeholder=' Add Title'
-          type="text"
-          name="Addtitle"
-          value={formData.Addtitle}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Year:
-        <input
-         className='brand'
-         placeholder='Year'
-          type="text"
-          name="Year"
-          value={formData.Year}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Price:
-        <input
-         className='brand'
-         placeholder='Price'
-          type="text"
-          name="Price"
-          value={formData.Price}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Phone:
-        <input
-         className='brand'
-         placeholder='Phone'
-          type="text"
-          name="Phone"
-          value={formData.Phone}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Location:
-        <input
-         className='brand'
-         placeholder='Location'
-          type="text"
-          name="Location"
-          value={formData.Location}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        State:
-        <input
-         className='brand'
-         placeholder='State'
-          type="text"
-          name="State"
-          value={formData.State}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        District:
-        <input
-         className='brand'
-         placeholder='District'
-          type="text"
-          name="District"
-          value={formData.District}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Image:
-        <input
-         className='brand'
-         placeholder='Image'
-          type="file"
-          name="Image"
-          onChange={handleChange}
-        />
-      </label>
-      <Button  className='btn' type="submit">Add Product</Button>
-    </form>
-    </div>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Brand:
+            <input
+              className='brand'
+              type="text"
+              placeholder='Brand'
+              name="Brand"
+              value={formData.Brand}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Description:
+            <input
+              className='brand'
+              placeholder='Description'
+              type="text"
+              name="Discription"
+              value={formData.Discription}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Add Title:
+            <input
+              className='brand'
+              placeholder=' Add Title'
+              type="text"
+              name="Addtitle"
+              value={formData.Addtitle}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Year:
+            <input
+              className='brand'
+              placeholder='Year'
+              type="text"
+              name="Year"
+              value={formData.Year}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Price:
+            <input
+              className='brand'
+              placeholder='Price'
+              type="text"
+              name="Price"
+              value={formData.Price}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Phone:
+            <input
+              className='brand'
+              placeholder='Phone'
+              type="text"
+              name="Phone"
+              value={formData.Phone}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Location:
+            <input
+              className='brand'
+              placeholder='Location'
+              type="text"
+              name="Location"
+              value={formData.Location}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            State:
+            <input
+              className='brand'
+              placeholder='State'
+              type="text"
+              name="State"
+              value={formData.State}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            District:
+            <input
+              className='brand'
+              placeholder='District'
+              type="text"
+              name="District"
+              value={formData.District}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Image:
+            <input
+              className='brand'
+              placeholder='Image'
+              type="file"
+              name="Image"
+              onChange={handleChange}
+            />
+          </label>
+          <Button className='btn' type="submit">Add Product</Button>
+        </form>
+      </div>
     </div>
   );
 }
+

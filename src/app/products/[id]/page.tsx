@@ -6,6 +6,8 @@ import Navbar from '../../Navbar/page'
 import { Button } from 'react-bootstrap'; 
 import './page.css'
 import LoginPopup from '../../LoginPopup/page'
+import { useStore } from '../../Store/user-login';
+
 interface Parameter {
   params: { id: string };
 }
@@ -25,14 +27,19 @@ type Product = {
 };
 
 export async function Productsidefetch(): Promise<Product[]> {
-  const res = await fetch('http://127.0.0.1:8001/productLists1/');
+  const res = await fetch('http://127.0.0.1:8001/product_view/');
   if (!res.ok) {
     throw new Error('Failed to fetch');
   }
   return res.json();
 }
 
+
+
 async function Page({ params }: Parameter) {
+
+  const login = useStore((state) => state.login);
+  const username = useStore((state) => state.username);
   const data = await Productsidefetch();
   const newId= parseInt(params.id)
 
@@ -43,6 +50,9 @@ console.log(product)
     console.log("Product not found");
     return <p>Product not found</p>;
   }
+ 
+  
+
 function handle(){
   <LoginPopup/>
 }
@@ -64,7 +74,7 @@ function handle(){
       </div >
       <div className='detail-chat'>
         <Button variant="info" className='btn-chat' onClick={handle}>Chat with seller</Button>
-       <p className='phone'>{product.Phone}</p>
+       <p className='phone'> {username ? `${product.Phone}` : '**********'}</p>
       </div>
       <div className='detail-location'>
         <h5 className='text-pd'>Posted in</h5>

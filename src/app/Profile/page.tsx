@@ -5,6 +5,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useStore } from '../Store/user-login';
+import { Dropdown, Button } from 'react-bootstrap';
 import Link from 'next/link';
 
 const Profile = () => {
@@ -13,7 +14,7 @@ const Profile = () => {
   const [error, setError] = useState<string>('');
   const router = useRouter();
   const logout = useStore((state) => state.logout);
-
+  const username = useStore((state) => state.username);
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -59,17 +60,19 @@ const Profile = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Profile</h1>
-      {user ? (
-        <div>
-          <p style={{ textAlign: 'center' }}><strong>Username:</strong> {user.username}</p>
-          <p style={{ textAlign: 'center' }}><strong>Email:</strong> {user.email}</p>
-        </div>
-      ) : (
-        <p style={{ textAlign: 'center' }}>No user data available</p>
-      )}
-      <button style={{ display: 'block', margin: '0 auto' }} onClick={handleLogout}>Logout</button>
-      <Link href='/' style={{textAlign:'center'}}>Home</Link>
+      {/* <h1 style={{ textAlign: 'center' }}>Profile</h1> */}
+      <Dropdown>
+        <Dropdown.Toggle className="btn" id="dropdown-basic">
+        {username ? `${username}` : 'Login'}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item ><strong>Username:</strong> {user.username}</Dropdown.Item>
+          <Dropdown.Item ><strong>Email:</strong> {user.email}</Dropdown.Item>
+          <Dropdown.Item ><Button style={{ display: 'block', margin: '0 auto' }} onClick={handleLogout}>Logout</Button></Dropdown.Item>
+          
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 };

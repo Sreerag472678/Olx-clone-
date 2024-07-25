@@ -6,13 +6,17 @@ import './page.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import LoginPopup from '../LoginPopup/page'
 import 'reactjs-popup/dist/index.css';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import SearchBar from "../SearchBar/page";
+import { useStore } from '../Store/user-login';
+import Profile from "../Profile/page";
 
 
 type Lang = 'English' | 'हिंदी';
 
 const Page: React.FC = () => {
+
+  const username = useStore((state) => state.username);
   
   const [lang, setLang] = useState<Lang>('English');
   const [show, setShow] = useState(false);
@@ -20,6 +24,17 @@ const Page: React.FC = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [buttonVal,showButton] = useState(0)
+
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);  
+  }, []);
+
+  if (!isHydrated) {
+    return null;  
+  }
+
   return (
     <header>
       <Link href='/'>
@@ -49,7 +64,11 @@ const Page: React.FC = () => {
           <Dropdown.Item onClick={() => setLang('हिंदी')}>हिंदी</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+      {
+        !!username ?
+      <Profile/> :
        <LoginPopup/>
+      }
 
      
       <div className='img-container'>

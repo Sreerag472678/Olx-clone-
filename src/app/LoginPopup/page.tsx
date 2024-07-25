@@ -8,10 +8,11 @@ import Modal from 'react-bootstrap/Modal';
 import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useStore } from '../Store/user-login';
+import Profile from '../Profile/page';
 
 const Login = () => {
   const login = useStore((state) => state.login);
-  const username = useStore((state) => state.username);
+  
 
   
   const [credentials, setCredentials] = useState<{ username?: string, password?: string }>({});
@@ -21,7 +22,20 @@ const Login = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    const token = localStorage.getItem('jsonwebtoken');
+  
+    if (!token) {
+      setShow(true);
+      
+    }else{
+      return(
+     <Profile/>
+      )
+    }
+  }
+    
+    
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({
@@ -30,15 +44,7 @@ const Login = () => {
     });
   };
   
-  const [isHydrated, setIsHydrated] = useState(false);
 
-  useEffect(() => {
-    setIsHydrated(true);  
-  }, []);
-
-  if (!isHydrated) {
-    return null;  
-  }
 
 
   const handleLogin = async () => {
@@ -57,7 +63,7 @@ const Login = () => {
         const token = result.access;
         localStorage.setItem('jsonwebtoken', token);
         login(credentials.username || '');  
-        router.push('/Profile');  
+        router.push('/');  
         handleClose();  
       } else {
         setError(result.detail || 'An error occurred during login');
@@ -70,7 +76,7 @@ const Login = () => {
   return (
     <>
       <Button style={{ color: "black" }} variant="primary" onClick={handleShow}>
-        {username ? `${username}` : 'Login'}
+        Login
       </Button>
 
       <Modal show={show} onHide={handleClose}>

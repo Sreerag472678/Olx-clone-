@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import './page.css';
 import { Container } from 'react-bootstrap';
-import ProductDetails from './[productid]/page';
+import Footer from '../Footer/page'
 
 type Product = {
   id: number;
@@ -15,7 +15,7 @@ type Product = {
 };
 
 export async function Serversidefetch(): Promise<Product[]> {
-  const res = await fetch('http://127.0.0.1:8001/productLists1/');
+  const res = await fetch('http://127.0.0.1:8001/product_view/');
   if (!res.ok) {
     throw new Error('Failed to fetch');
   }
@@ -53,6 +53,7 @@ const Page: React.FC = async () => {
           </Link>
         ))}
       </Container>
+      <Footer/> 
     </div>
   );
 };
